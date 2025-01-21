@@ -1,6 +1,6 @@
-const { defineConfig } = require('cypress')
-const allureWriter = require('@shelex/cypress-allure-plugin/writer');
-module.exports = defineConfig({
+import { allureCypress } from "allure-cypress/reporter";
+
+export default {
   chromeWebSecurity: false,
   includeShadowDom: true,
   defaultCommandTimeout: 50000,
@@ -22,7 +22,9 @@ module.exports = defineConfig({
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-      allureWriter(on, config);
+      allureCypress(on, config, {
+        resultsDir: "allure-results",
+      });
       on('task',{
         log(message) {
           console.log(message)
@@ -33,4 +35,4 @@ module.exports = defineConfig({
     },
     baseUrl: 'https://www.saucedemo.com'
   }
-})
+}
