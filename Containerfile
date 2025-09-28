@@ -1,4 +1,4 @@
-# Start with a base image that has Node.js installed
+# Start with a base image that has Node.js installed you can change the version as needed
 FROM cypress/base:22.13.0
 
 # Install JDK
